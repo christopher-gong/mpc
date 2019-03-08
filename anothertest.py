@@ -6,12 +6,13 @@ import rospy
 from std_msgs.msg import String
 import pandas as pd
 import datetime
-
+f = open("../Desktop/thisisanotherstest.txt", "w+")
 newrows = []
 
 def callback(data):
 	t = [str(datetime.datetime.now()), str(data.header.stamp.secs), str(data.header.stamp.nsecs), str(data.header.frame_id), str(data.orientation.x), str(data.orientation.y), str(data.orientation.z), str(data.orientation.w), str(data.orientation_covariance), str(data.angular_velocity.x), str(data.angular_velocity.y), str(data.angular_velocity.z), str(data.angular_velocity_covariance), str(data.linear_acceleration.x), str(data.linear_acceleration.y), str(data.linear_acceleration.z), str(data.linear_acceleration_covariance)]
 	newrows.append(t)
+	f.write(str(t))
 
 def listener():
 	rospy.init_node("listener", anonymous=True)
